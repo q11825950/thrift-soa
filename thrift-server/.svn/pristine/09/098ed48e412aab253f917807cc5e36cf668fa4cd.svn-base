@@ -1,0 +1,16 @@
+server.port=8088
+
+#rpc\u8C03\u7528\u65B9\u5F0F
+thrift.server.protocol=thrift
+
+#\u6CE8\u518C\u4E2D\u5FC3\u914D\u7F6E
+#IP\u7AEF\u53E3
+rpc.registry.list=10.8.0.61:2181,10.8.0.61:2182,10.8.0.61:2183
+#\u6CE8\u518C\u4E2D\u5FC3\u7C7B\u578B
+rpc.registry.protocol=property
+
+#\u6D88\u8D39\u7AEF\u914D\u7F6E
+#\u670D\u52A1\u7AEF\u4FE1\u606F\u7ED3\u5A5A
+thrift.server.list=aaa=192.168.1.81:9000,test=192.168.1.82:9000|192.168.1.83:9000
+
+

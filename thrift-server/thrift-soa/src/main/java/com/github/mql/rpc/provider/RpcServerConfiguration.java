@@ -1,0 +1,63 @@
+package com.github.mql.rpc.provider;
+
+
+import com.github.mql.rpc.configBean.Registry;
+import com.github.mql.rpc.configBean.Service;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+
+/** 
+* @Description: 服务端配置
+* @Author: 孟庆霖
+* @Date: 2018/12/21 
+*/
+//@Configuration
+public class RpcServerConfiguration
+{
+	@Value("${thrift.server.host}")
+	private String serverHost;
+	
+	@Value("${thrift.server.port}")
+	private String serverPort;
+
+	@Value("${thrift.server.protocol}")
+	private String serverProtocol;
+
+	@Value("${rpc.registry.list}")
+	private String registryList;
+
+	@Value("${rpc.registry.protocol}")
+	private String registryProtocol;
+	
+	@Bean
+	public RpcServerRegistry register()
+	{
+		RpcServerRegistry registry = new RpcServerRegistry();
+//		register.setServerList(zkHosts);
+//		register.setServerIp(serverIp);
+//		register.setServerPort(serverPort);
+		return registry;
+	}
+
+
+	@Bean
+	public Registry registryBean()
+	{
+		Registry registry = new Registry();
+		registry.setAddress(registryList);
+		registry.setProtocol(registryProtocol);
+		return registry;
+	}
+
+	@Bean
+	public Service serviceBean()
+	{
+		Service service = new Service();
+		service.setHost(serverHost);
+		service.setPort(serverPort);
+		service.setServerProtocol(serverProtocol);
+		return service;
+	}
+
+
+}

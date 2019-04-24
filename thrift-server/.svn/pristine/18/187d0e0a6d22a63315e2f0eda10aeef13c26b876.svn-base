@@ -1,0 +1,16 @@
+package com.github.mql.rpc.cluster;
+
+import com.github.mql.rpc.invoke.Invocation;
+
+/**
+ * @Description
+ * @ClassName FailsafeClusterInvoke
+ * @Date 2019/1/3
+ * @Author mql
+ */
+public class FailsafeClusterInvoke implements Cluster {
+    @Override
+    public Object invoke(Invocation invocation) throws Exception {
+        return null;
+    }
+}

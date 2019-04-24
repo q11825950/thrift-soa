@@ -1,0 +1,18 @@
+package com.github.mql.rpc.cluster;
+
+import com.github.mql.rpc.invoke.Invocation;
+
+/**
+ * @Description 快速失败模式
+ * 快速失败，只发起一次调用，失败立即报错。
+ * 通常用于非幂等性的写操作，比如新增记录。
+ * @ClassName FailfastClusterInvoke
+ * @Date 2019/1/3
+ * @Author mql
+ */
+public class FailfastClusterInvoke implements Cluster {
+    @Override
+    public Object invoke(Invocation invocation) throws Exception {
+        return null;
+    }
+}

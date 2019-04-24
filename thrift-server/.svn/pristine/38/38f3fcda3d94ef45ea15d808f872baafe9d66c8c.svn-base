@@ -1,0 +1,18 @@
+server.port=8082
+
+#rpc\u8C03\u7528\u65B9\u5F0F
+thrift.server.protocol=thrift
+
+#\u6CE8\u518C\u4E2D\u5FC3\u914D\u7F6E
+#IP\u7AEF\u53E3
+rpc.registry.list=10.8.0.61:2181,10.8.0.61:2182,10.8.0.61:2183
+#\u6CE8\u518C\u4E2D\u5FC3\u7C7B\u578B
+rpc.registry.protocol=property
+
+#\u6D88\u8D39\u7AEF\u914D\u7F6E
+#\u670D\u52A1\u7AEF\u4FE1\u606F\u7ED3\u5A5A
+thrift.server.list= localhost:9000
+
+
+#\u8D1F\u8F7D\u5747\u8861\u6A21\u5F0F(\u5148\u53BB\u6389)
+#thrift.server.loadbalance=random

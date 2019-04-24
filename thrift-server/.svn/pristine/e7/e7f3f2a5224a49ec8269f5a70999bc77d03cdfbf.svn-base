@@ -1,0 +1,79 @@
+package com.github.mql.rpc.configBean;
+
+
+import java.util.List;
+
+/** 消费端reference
+ * Created by 技术部03 on 2018/12/20.
+ */
+public class Reference {
+
+    /**
+     * 服务端注册信息集合
+     */
+    private String servletList;
+
+    /**
+     * 负载均衡方式
+     */
+    private String loadbalance;
+
+    /**
+     * 服务端注册信息集合
+     */
+    private List<String> registryInfo;
+
+    /**
+     * 调用方式
+     */
+    private String protocol;
+
+
+    /**
+     * 故障处理方式
+     */
+    private String cluster;
+
+
+
+
+    public String getServletList() {
+        return servletList;
+    }
+
+    public void setServletList(String servletList) {
+        this.servletList = servletList;
+    }
+
+    public String getLoadbalance() {
+        return loadbalance;
+    }
+
+    public void setLoadbalance(String loadbalance) {
+        this.loadbalance = loadbalance;
+    }
+
+    public List<String> getRegistryInfo() {
+        return registryInfo;
+    }
+
+    public void setRegistryInfo(List<String> registryInfo) {
+        this.registryInfo = registryInfo;
+    }
+
+    public String getProtocol() {
+        return protocol;
+    }
+
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
+    }
+
+    public String getCluster() {
+        return cluster;
+    }
+
+    public void setCluster(String cluster) {
+        this.cluster = cluster;
+    }
+}

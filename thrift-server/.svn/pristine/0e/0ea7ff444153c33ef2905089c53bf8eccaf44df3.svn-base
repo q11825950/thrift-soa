@@ -1,0 +1,15 @@
+server.port=8082
+
+#注册中心配置
+#IP端口
+rpc.registry.list=10.8.0.61:2181,10.8.0.61:2182,10.8.0.61:2183
+#注册中心类型
+rpc.registry.protocol=property
+
+#消费端配置
+#服务端信息结婚
+thrift.server.list=192.168.1.102:9898,192.168.1.102:9898
+#负载均衡模式
+thrift.server.loadbalance=random
+#rpc调用方式
+thrift.server.protocol=thrift

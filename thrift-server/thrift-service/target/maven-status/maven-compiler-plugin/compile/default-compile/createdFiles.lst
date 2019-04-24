@@ -1,0 +1,5 @@
+com\example\controller\ConsumerService.class
+com\example\Application.class
+com\example\service\SyncRequestServiceImpl.class
+com\example\service\UserServiceImpl.class
+com\example\service\HelloServiceImpl.class

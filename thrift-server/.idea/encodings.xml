@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thrift-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thrift-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thrift-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thrift-soa" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

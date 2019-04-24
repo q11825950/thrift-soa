@@ -1,0 +1,59 @@
+package com.github.mql.rpc.proxy;
+
+
+import com.github.mql.rpc.cluster.Cluster;
+import com.github.mql.rpc.configBean.Reference;
+import com.github.mql.rpc.constants.ConsumerConstant;
+import com.github.mql.rpc.invoke.Invocation;
+import com.github.mql.rpc.invoke.Invoke;
+import org.springframework.beans.BeanUtils;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+/**
+ * Created by 技术部03 on 2018/12/20.
+ */
+public class InvokeInvocationHandler implements InvocationHandler {
+    private Invoke invoke ;
+    private Class<?> referenceClass;
+    private Reference reference = new Reference();
+
+    public InvokeInvocationHandler(Invoke invoke,Class<?> referenceClass,Reference reference) {
+        this.invoke = invoke;
+        this.referenceClass = referenceClass;
+        reference.getServerRegistry();
+        BeanUtils.copyProperties(reference,this.reference);
+    }
+
+    /** 
+    * @Description: 消费端代理
+    * @param proxy
+    * @param method
+    * @param args
+    * @return: java.lang.Object 
+    * @Author: 孟庆霖
+    * @Date: 2018/12/21 
+    */
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        //在这个invoke里面最终要调用多个远程的provider
+        Invocation invocation = new Invocation();
+        invocation.setMethod(method);
+        invocation.setObjs(args);
+        invocation.setReferenceClass(referenceClass);
+        invocation.setReferenceBean(reference);
+        invocation.setInvoke(invoke);
+
+        //故障处理器
+        Cluster cluster = ConsumerConstant.clusters.get(reference.getCluster());
+        try {
+            return cluster.invoke(invocation);
+        } catch (InvocationTargetException e){
+            throw e.getCause();
+        }
+
+//        return cluster.invoke(invocation);
+    }
+}

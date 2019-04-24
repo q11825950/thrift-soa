@@ -1,0 +1,68 @@
+package com.github.mql.rpc.consumer;
+
+
+import com.github.mql.rpc.configBean.Reference;
+import com.github.mql.rpc.configBean.Registry;
+import com.github.mql.rpc.proxy.RpcConsumerProxy;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.context.annotation.Bean;
+
+
+/** 
+* @Description:消费端配置类
+* @Author: 孟庆霖
+* @Date: 2018/12/21 
+*/
+//@Configuration
+public class RpcConsumerConfiguration
+{
+	@Value("${rpc.registry.list}")
+	private String registryList;
+
+	@Value("${rpc.registry.protocol}")
+	private String registryProtocol;
+
+	@Value("${thrift.server.list}")
+	private String servletList;
+
+	@Value("${thrift.server.loadbalance}")
+	private String serverLoadbalance;
+
+	@Value("${thrift.server.protocol}")
+	private String serverProtocol;
+	
+	@Bean
+	public BeanPostProcessor beanPostProcessor(RpcConsumerProxy proxy)
+	{
+		RpcRefAnnBeanPostProcessor processor = new RpcRefAnnBeanPostProcessor();
+		processor.setProxy(proxy);
+		return processor;
+	}
+
+	@Bean
+	public RpcConsumerProxy proxy()
+	{
+		RpcConsumerProxy proxy = new RpcConsumerProxy();
+		return proxy;
+	}
+
+	@Bean
+	public Reference referenceBean()
+	{
+		Reference referenceBean = new Reference();
+		referenceBean.setServletList(servletList);
+		referenceBean.setLoadbalance(serverLoadbalance);
+		referenceBean.setProtocol(serverProtocol);
+		return referenceBean;
+	}
+
+	@Bean
+	public Registry registryBean()
+	{
+		Registry registry = new Registry();
+		registry.setAddress(registryList);
+		registry.setProtocol(registryProtocol);
+		return registry;
+	}
+}

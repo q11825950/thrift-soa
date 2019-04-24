@@ -1,0 +1,87 @@
+package com.github.mql.rpc.configBean;
+
+
+import com.github.mql.rpc.invoke.Invoke;
+import com.github.mql.rpc.invoke.ThriftInvoke;
+import com.github.mql.rpc.loadbalance.LoadBalance;
+import com.github.mql.rpc.loadbalance.RandomLoadBalance;
+import com.github.mql.rpc.loadbalance.RoundRobinLoadBalance;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/** 消费端reference
+ * Created by 技术部03 on 2018/12/20.
+ */
+public class Reference {
+
+    /**
+     * 服务端注册信息集合
+     */
+    private String servletList;
+
+    /**
+     * 负载均衡方式
+     */
+    private String loadbalance;
+
+    /**
+     * 服务端注册信息集合
+     */
+    private List<String> registryInfo;
+
+    /**
+     * 调用方式
+     */
+    private String protocol;
+
+    /**
+     * 消费端rpc调用方式集合
+     */
+    public static Map<String, Invoke> invokes = new HashMap<String, Invoke>();
+    /**
+     * 负载均衡集合
+     */
+    public static Map<String, LoadBalance> loadBalances = new HashMap<String, LoadBalance>();
+
+    static {
+        invokes.put("thrift", new ThriftInvoke());
+
+        loadBalances.put("random", new RandomLoadBalance());//随机
+        loadBalances.put("roundrob", new RoundRobinLoadBalance());//轮训
+    }
+
+
+    public String getServletList() {
+        return servletList;
+    }
+
+    public void setServletList(String servletList) {
+        this.servletList = servletList;
+    }
+
+    public String getLoadbalance() {
+        return loadbalance;
+    }
+
+    public void setLoadbalance(String loadbalance) {
+        this.loadbalance = loadbalance;
+    }
+
+    public List<String> getRegistryInfo() {
+        return registryInfo;
+    }
+
+    public void setRegistryInfo(List<String> registryInfo) {
+        this.registryInfo = registryInfo;
+    }
+
+    public String getProtocol() {
+        return protocol;
+    }
+
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
+    }
+}

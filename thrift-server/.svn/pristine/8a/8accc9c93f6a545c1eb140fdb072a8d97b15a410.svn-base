@@ -1,0 +1,38 @@
+package com.example;
+
+import com.github.mql.rpc.consumer.RpcConsumerConfiguration;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Import;
+
+/**
+ * Created by henry on 2018/7/23.
+ */
+@Slf4j
+@SpringBootApplication(scanBasePackages = {"com.example"})
+@Import(RpcConsumerConfiguration.class)
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+        /*//传输层类型
+        TTransport transport = null;
+        try {
+            TSocket soket = new TSocket("192.168.1.81",9000);
+            transport = new TFramedTransport(soket);
+
+//            TProtocol protocol = new TMultiplexedProtocol(new TBinaryProtocol(transport),"com.example.thrift.api.HelloService");
+            //协议
+            TProtocol protocol = new TBinaryProtocol(transport);
+            SyncRequestService.Client client = new SyncRequestService.Client(protocol);
+            transport.open();
+            String aa = client.SyncRequest("aa",1);
+            System.out.println(aa);
+
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            transport.close();
+        }*/
+    }
+}

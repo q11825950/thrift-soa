@@ -1,0 +1,61 @@
+package com.github.mql.rpc.configBean;
+
+import com.github.mql.rpc.registry.BaseRegistry;
+import com.github.mql.rpc.registry.PropertyRegistry;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class Registry implements InitializingBean,
+        ApplicationContextAware {
+
+    private static final long serialVersionUID = 45234109234L;
+
+    public ApplicationContext application;
+
+    public static Map<String, BaseRegistry> registryMap = new HashMap<String, BaseRegistry>();
+
+    /*注册中心类型*/
+    private String protocol;
+
+    /*注册中心地址*/
+    private String address;
+
+    /*支持的注册中心*/
+    static {
+        registryMap.put("property", new PropertyRegistry());
+    }
+    
+    public void setApplicationContext(ApplicationContext applicationContext)
+            throws BeansException {
+        this.application = applicationContext;
+        
+    }
+
+    
+    public void afterPropertiesSet() throws Exception {
+        
+    }
+    
+    public String getProtocol() {
+        return protocol;
+    }
+    
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
+    }
+    
+    public String getAddress() {
+        return address;
+    }
+    
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    
+}

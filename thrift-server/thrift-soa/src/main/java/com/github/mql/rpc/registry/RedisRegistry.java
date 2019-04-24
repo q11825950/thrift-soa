@@ -1,0 +1,46 @@
+package com.github.mql.rpc.registry;
+
+import com.alibaba.fastjson.JSONObject;
+import com.github.mql.rpc.configBean.Registry;
+import com.github.mql.rpc.configBean.Service;
+import com.github.mql.rpc.provider.RpcService;
+import com.github.mql.rpc.redis.RedisApi;
+import org.springframework.context.ApplicationContext;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @Description
+ * @ClassName RedisRegistry
+ * @Date 2018/12/27
+ * @Author mql
+ */
+public class RedisRegistry implements BaseRegistry {
+    @Override
+    public boolean registry(Map<String, RpcService> serviceMap, ApplicationContext application) {
+        Registry registry = application.getBean(Registry.class);
+        Service ServiceProtocol = application.getBean(Service.class);
+        if(RedisApi.getPool()==null){
+            RedisApi.createJedisPool(registry.getAddress());
+        }
+
+        for (Map.Entry<String, RpcService> service : serviceMap.entrySet()){
+            JSONObject jo = new JSONObject();
+            jo.put("protocol", JSONObject.toJSONString(ServiceProtocol));
+            jo.put("service", JSONObject.toJSONString(service.getValue()));
+
+            JSONObject ipport = new JSONObject();
+            ipport.put(ServiceProtocol.getHost() + ":" + ServiceProtocol.getPort(),
+                    jo);
+        }
+
+        return false;
+    }
+
+    @Override
+    public Map<String,List<String>> getRegistry(ApplicationContext application) {
+        return null;
+    }
+
+}
