@@ -1,4 +1,13 @@
-# thrift-soa
+# thrift-client
+消费端测试
+
+# thrift-service
+服务端测试
+
+# thrift-api
+thrift接口文件模块
+
+# thrift-soa  rpc框架
 手写的thrift-rpc框架
 结合了springboot使用注解的方式定义消费者和服务者
 服务的发现使用配置文件方式（回去会改进）
